@@ -1,0 +1,1 @@
+Logotipo horizontal UHo tomado de la imagen suministrada por el usuario. Sustituye únicamente la cabecera del menú lateral. No se modifican APIs ni componentes de negocio. Para probar: npm run dev. Si el navegador conserva el logo anterior, recargar con Ctrl+F5.

@@ -1,0 +1,30 @@
+
+# Configuración privada
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Django
+db.sqlite3
+media/
+
+# Node.js y Vue
+node_modules/
+dist/
+
+# Editores
+.vscode/
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+# Seguridad y archivos temporales
+credenciales_demo.txt
+*.log
+*.bak

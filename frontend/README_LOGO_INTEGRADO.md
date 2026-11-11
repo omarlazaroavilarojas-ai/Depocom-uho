@@ -1,0 +1,1 @@
+Logotipo horizontal con fondo transparente. DepoCom UHO aparece encima de Universidad de Holguín, y Sistema de gestión del depósito debajo. Se mantiene la imagen institucional original, sin su rectángulo azul, sobre el fondo azul #212D57 del menú. Sustituir frontend y reiniciar npm run dev.

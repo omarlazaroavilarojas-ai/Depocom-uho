@@ -1,0 +1,1 @@
+Inventario del depósito: consulta, búsqueda y detalles usando GET /api/deposito/equipos/. Almacén de piezas: conecta el componente existente GestionInventario a /api/inventario/. No se modifican backend ni CSRF. Movimientos de equipos requieren revisión adicional de API y permisos.

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DepoCom UHO - Mockup Interactivo</title>
+<style>
+:root{--az:#003366;--az2:#0055a5;--azc:#e8f0fa;--vd:#1a7a4a;--vdc:#e8f5ee;--rj:#c0392b;--rjc:#fdecea;--am:#b45309;--amc:#fef3cd;--gt:#1e1e2e;--g2:#444;--g3:#777;--gb:#d1d5db;--gf:#f4f6fb;--bl:#fff;--r:10px;--rs:6px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#eef2f8;color:var(--gt);font-size:14px;}
+.page-header{background:var(--az);color:#fff;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
+.ph-title{font-size:20px;font-weight:700;}
+.ph-sub{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px;}
+.ph-badge{background:rgba(255,255,255,.14);border-radius:6px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.85);}
+.content{padding:28px 32px;}
+.pt{font-size:22px;font-weight:700;color:var(--az);margin-bottom:3px;}
+.ps{font-size:13px;color:var(--g3);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--gb);}
+.bdg{display:inline-block;border-radius:30px;padding:2px 9px;font-size:10px;font-weight:600;}
+.ba{background:var(--azc);color:var(--az2);}
+.bv{background:var(--vdc);color:var(--vd);}
+.br{background:var(--rjc);color:var(--rj);}
+.bam{background:var(--amc);color:var(--am);}
+.bg{background:#f0f0f0;color:#555;}
+.ms{background:var(--gf);border:1px solid var(--gb);border-radius:12px;overflow:hidden;margin-bottom:20px;}
+.mtb{background:var(--az);padding:8px 14px;display:flex;align-items:center;gap:8px;}
+.dots span{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:3px;}
+.dots span:nth-child(1){background:#ff5f57;}.dots span:nth-child(2){background:#febc2e;}.dots span:nth-child(3){background:#28c840;}
+.murl{flex:1;background:rgba(255,255,255,.11);border-radius:4px;padding:3px 8px;font-size:10px;color:rgba(255,255,255,.6);}
+.musr{font-size:10px;color:rgba(255,255,255,.7);}
+.af{display:flex;min-height:500px;}
+.asb{width:188px;background:var(--az);padding:12px 0;flex-shrink:0;}
+.al{padding:0 12px 12px;border-bottom:1px solid rgba(255,255,255,.13);margin-bottom:5px;}
+.an{font-size:12.5px;font-weight:700;color:#fff;}
+.ar{font-size:9px;color:rgba(255,255,255,.45);margin-top:1px;}
+.asn{padding:6px 12px 2px;font-size:8.5px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,.35);text-transform:uppercase;}
+.asi{padding:6px 12px;display:flex;align-items:center;gap:6px;font-size:10.5px;color:rgba(255,255,255,.68);cursor:pointer;border-left:3px solid transparent;}
+.asi:hover{background:rgba(255,255,255,.08);color:#fff;}
+.asi.on{background:rgba(255,255,255,.13);color:#fff;border-left-color:#5ba3f5;font-weight:600;}
+.ab{flex:1;background:var(--gf);overflow:auto;}
+.atb{background:var(--bl);border-bottom:1px solid var(--gb);padding:8px 17px;display:flex;align-items:center;justify-content:space-between;}
+.att{font-size:12.5px;font-weight:700;color:var(--az);}
+.ata{display:flex;gap:6px;align-items:center;}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:var(--rs);font-size:10.5px;font-weight:600;cursor:pointer;border:none;transition:.13s;}
+.bp{background:var(--az2);color:#fff;}.bo{background:transparent;border:1px solid var(--az2);color:var(--az2);}
+.bsm{padding:3px 8px;font-size:10px;}
+.bv2{background:var(--vd);color:#fff;}.br2{background:var(--rj);color:#fff;}.bam2{background:var(--am);color:#fff;}
+.ac{padding:15px 17px;}
+.sr{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:9px;margin-bottom:14px;}
+.sc{background:var(--bl);border:1px solid var(--gb);border-radius:var(--r);padding:10px 12px;}
+.scn{font-size:20px;font-weight:700;color:var(--az);}
+.scl{font-size:9.5px;color:var(--g3);margin-top:2px;}
+.sci{font-size:17px;margin-bottom:3px;}
+.tc{background:var(--bl);border:1px solid var(--gb);border-radius:var(--r);overflow:hidden;margin-bottom:13px;}
+.tch{padding:8px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gb);}
+.tct{font-size:11.5px;font-weight:700;color:var(--az);}
+.at{width:100%;border-collapse:collapse;font-size:10.5px;}
+.at th{background:var(--azc);color:var(--az);padding:6px 9px;text-align:left;font-weight:600;font-size:9.5px;text-transform:uppercase;}
+.at td{padding:7px 9px;border-bottom:1px solid #f0f1f3;vertical-align:middle;}
+.at tr:hover td{background:#f7f9ff;}
+.fs{background:var(--bl);border:1px solid var(--gb);border-radius:var(--r);padding:13px 15px;margin-bottom:11px;}
+.fs h3{font-size:11.5px;font-weight:700;color:var(--az);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--gb);}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:8px;}
+.fgr{display:flex;flex-direction:column;gap:3px;}
+.fgr label{font-size:9.5px;font-weight:600;color:var(--g2);}
+.fgr input,.fgr select,.fgr textarea{border:1px solid var(--gb);border-radius:var(--rs);padding:5px 7px;font-size:10.5px;color:var(--gt);font-family:inherit;outline:none;width:100%;}
+.tl{padding:4px 0;}
+.tli{display:flex;gap:9px;padding:7px 0;position:relative;}
+.tli::before{content:"";position:absolute;left:13px;top:28px;bottom:0;width:2px;background:var(--gb);}
+.tli:last-child::before{display:none;}
+.tld{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;border:2px solid;}
+.tld.tv{background:var(--vdc);border-color:var(--vd);color:var(--vd);}
+.tld.ta{background:var(--azc);border-color:var(--az2);color:var(--az2);}
+.tld.tp{background:#f5f5f5;border-color:#ccc;color:#999;}
+.tln{flex:1;padding-top:3px;}
+.tlt{font-size:11.5px;font-weight:600;}
+.tls{font-size:10px;color:var(--g3);margin-top:1px;}
+.cli{display:flex;align-items:center;gap:7px;padding:6px 9px;background:var(--bl);border:1px solid var(--gb);border-radius:var(--rs);margin-bottom:5px;}
+.cli input[type=checkbox]{width:13px;height:13px;accent-color:var(--az2);}
+.cii{flex:1;}
+.cin{font-size:11.5px;font-weight:600;}
+.cis{font-size:10px;color:var(--g3);}
+.ali{padding:8px 12px;border-radius:var(--rs);margin-bottom:10px;font-size:10.5px;display:flex;gap:7px;}
+.ali-i{background:var(--azc);border-left:4px solid var(--az2);color:#0055a5;}
+.ali-w{background:var(--amc);border-left:4px solid var(--am);color:var(--am);}
+.stbs{display:flex;gap:0;border-bottom:2px solid var(--gb);margin-bottom:17px;overflow-x:auto;}
+.stb{padding:8px 13px;cursor:pointer;font-size:11px;font-weight:500;color:var(--g3);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;}
+.stb:hover{color:var(--az2);}
+.stb.on{color:var(--az);border-bottom-color:var(--az2);font-weight:700;}
+.sp2{display:none;}.sp2.on{display:block;}
+.pc{background:var(--bl);border:1px solid var(--gb);border-radius:var(--r);padding:10px 12px;display:flex;gap:10px;align-items:flex-start;margin-bottom:7px;}
+.pci{width:34px;height:34px;border-radius:7px;background:var(--azc);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.pcd{flex:1;}
+.pcn{font-size:11.5px;font-weight:700;}
+.pcs{font-size:10px;color:var(--g3);}
+.pcst{font-size:11.5px;font-weight:700;color:var(--az2);}
+.mvo{background:rgba(0,30,70,.38);display:flex;align-items:center;justify-content:center;padding:13px;min-height:310px;border-radius:var(--r);}
+.mvb{background:var(--bl);border-radius:10px;padding:17px 20px;width:100%;max-width:400px;box-shadow:0 8px 32px rgba(0,0,0,.16);}
+.mvb h3{font-size:13px;font-weight:700;color:var(--az);margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid var(--gb);}
+.mva{display:flex;gap:7px;justify-content:flex-end;margin-top:12px;padding-top:10px;border-top:1px solid var(--gb);}
+.bc{font-size:10.5px;color:var(--g3);margin-bottom:10px;}
+.bc span{color:var(--az2);cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="page-header">
+  <div>
+    <div class="ph-title">DepoCom UHO &mdash; Mockup Interactivo</div>
+    <div class="ph-sub">Sistema de Gestion del Deposito de Equipos y Piezas de Computo</div>
+  </div>
+  <div class="ph-badge">Universidad de Holguin &middot; Cuba &middot; 11 Pantallas</div>
+</div>
+<div class="content">
+<div class="pt">Prototipo Navegable de la Interfaz</div>
+<div class="ps">Seleccione una pantalla en las pestanas para explorar el sistema. Cada pantalla representa una vista real del sistema segun el rol del usuario.</div>
+<!-- MOCKUP -->
+<section class="sec" id="s-mk">
+<div class="pt">Mockup Interactivo - DepoCom UHO</div>
+<div class="ps">Prototipo navegable de las 11 pantallas principales del sistema</div>
+<div class="stbs">
+<div class="stb on" onclick="showScr('sc0',this)">Dashboard</div>
+<div class="stb" onclick="showScr('sc1',this)">Nueva Solicitud</div>
+<div class="stb" onclick="showScr('sc2',this)">Aprobacion Area</div>
+<div class="stb" onclick="showScr('sc3',this)">Revision Tecnica</div>
+<div class="stb" onclick="showScr('sc4',this)">Economia</div>
+<div class="stb" onclick="showScr('sc5',this)">Inv. Deposito</div>
+<div class="stb" onclick="showScr('sc6',this)">Despiece</div>
+<div class="stb" onclick="showScr('sc7',this)">Almacen Piezas</div>
+<div class="stb" onclick="showScr('sc8',this)">Extraccion Pieza</div>
+<div class="stb" onclick="showScr('sc9',this)">Trazabilidad</div>
+<div class="stb" onclick="showScr('sc10',this)">Administracion</div>
+</div>
+
+<!-- SC0: DASHBOARD -->
+<div class="sp2 on" id="sc0">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">https://depocom.uho.edu.cu/dashboard</div><div class="musr">&#128100; Juan Garcia (Tecnico Soporte - Deposito)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Tecnico de Soporte</div></div>
+<div class="asn">Principal</div><div class="asi on">&#128202; Dashboard</div><div class="asi">&#128221; Solicitudes</div><div class="asi">&#127981; Deposito</div><div class="asi">&#128296; Despiece</div><div class="asi">&#128190; Almacen Piezas</div>
+<div class="asn">Reportes</div><div class="asi">&#128269; Trazabilidad</div><div class="asi">&#128200; Reportes</div></div>
+<div class="ab"><div class="atb"><div class="att">Panel Principal</div><div class="ata"><span style="font-size:17px;cursor:pointer">&#128276;</span><span style="font-size:11px;color:var(--g3);margin-left:8px">Juan Garcia</span></div></div>
+<div class="ac">
+<div class="ali ali-i">&#128203; Tiene <b>3 solicitudes</b> pendientes de revision tecnica y <b>1 despiece</b> agendado para hoy a las 09:00.</div>
+<div class="sr">
+<div class="sc"><div class="sci">&#128221;</div><div class="scn">8</div><div class="scl">Solicitudes Activas</div></div>
+<div class="sc"><div class="sci">&#127981;</div><div class="scn">42</div><div class="scl">Equipos Deposito</div></div>
+<div class="sc"><div class="sci">&#128190;</div><div class="scn">127</div><div class="scl">Piezas Almacen</div></div>
+<div class="sc"><div class="sci">&#128295;</div><div class="scn">5</div><div class="scl">Despiece Pend.</div></div>
+<div class="sc"><div class="sci">&#128260;</div><div class="scn">12</div><div class="scl">Piezas Instaladas</div></div>
+</div>
+<div class="tc"><div class="tch"><span class="tct">&#9203; Pendientes de Mi Gestion</span><button class="btn bo bsm">Ver todas</button></div>
+<table class="at"><thead><tr><th>No. Sol.</th><th>Departamento</th><th>Equipos</th><th>Estado</th><th>Fecha</th><th>Accion</th></tr></thead>
+<tbody>
+<tr><td>#SOL-2024-018</td><td>Dpto. Informatica</td><td>6</td><td><span class="bdg bam">Rev. Tecnica</span></td><td>15/01/2025</td><td><button class="btn bp bsm">Revisar</button></td></tr>
+<tr><td>#SOL-2024-021</td><td>Dir. Rectoria</td><td>12</td><td><span class="bdg bam">Rev. Tecnica</span></td><td>18/01/2025</td><td><button class="btn bp bsm">Revisar</button></td></tr>
+<tr><td>#SOL-2024-025</td><td>Dpto. Fisica</td><td>4</td><td><span class="bdg ba">Recepcion</span></td><td>20/01/2025</td><td><button class="btn bv2 bsm">Confirmar</button></td></tr>
+</tbody></table></div>
+</div></div></div></div></div>
+
+<!-- SC1: NUEVA SOLICITUD -->
+<div class="sp2" id="sc1">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/solicitudes/nueva</div><div class="musr">&#128100; Pedro Rojas (Jefe de Departamento)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Jefe de Departamento</div></div>
+<div class="asn">Solicitudes</div><div class="asi on">&#128221; Nueva Solicitud</div><div class="asi">&#128203; Mis Solicitudes</div></div>
+<div class="ab"><div class="atb"><div class="att">Nueva Solicitud de Baja</div><div class="ata"><button class="btn bo bsm">Cancelar</button><button class="btn bp bsm">&#128190; Guardar Borrador</button></div></div>
+<div class="ac">
+<div class="bc"><span>Solicitudes</span> &rsaquo; Nueva Solicitud</div>
+<div class="fs"><h3>&#128203; Datos de la Solicitud</h3>
+<div class="fg">
+<div class="fgr"><label>Departamento</label><input type="text" value="Dpto. Informatica" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Area</label><input type="text" value="Area Academica" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Sede</label><input type="text" value="Sede Central" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Centro de Costo</label><input type="text" value="CC-012"/></div>
+<div class="fgr"><label>Fecha</label><input type="date" value="2025-01-22"/></div>
+<div class="fgr" style="grid-column:1/-1"><label>Justificacion</label><textarea rows="2">Equipos con mas de 10 anos de uso, sin posibilidad de reparacion...</textarea></div>
+</div></div>
+<div class="fs"><h3>&#128187; Listado de Equipos</h3>
+<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+<button class="btn bp bsm">&#128228; Importar desde Excel</button>
+<button class="btn bo bsm">&#8615; Descargar Plantilla</button>
+<button class="btn bo bsm">&#10133; Agregar manual</button>
+</div>
+<div class="ali ali-i" style="font-size:10px">&#128204; El Excel debe contener: No Inventario, Tipo de Recurso, Modelo, Marca, No Serie, Estado (Roto/Funcionando)</div>
+<table class="at" style="margin-top:9px"><thead><tr><th>No. Inventario</th><th>Tipo</th><th>Marca</th><th>Modelo</th><th>No. Serie</th><th>Estado</th><th></th></tr></thead>
+<tbody>
+<tr><td>INV-0012345</td><td>Computadora</td><td>Lenovo</td><td>ThinkCentre M73</td><td>SN2019-123</td><td><span class="bdg br">Roto</span></td><td><button class="btn br2 bsm">&#128465;</button></td></tr>
+<tr><td>INV-0012346</td><td>Monitor</td><td>Samsung</td><td>S19E200B</td><td>SN2018-456</td><td><span class="bdg bam">Funcionando</span></td><td><button class="btn br2 bsm">&#128465;</button></td></tr>
+<tr><td>INV-0012350</td><td>Impresora</td><td>HP</td><td>LaserJet P1005</td><td>SN2015-789</td><td><span class="bdg br">Roto</span></td><td><button class="btn br2 bsm">&#128465;</button></td></tr>
+</tbody></table>
+<div style="margin-top:9px;text-align:right"><button class="btn bp">&#128228; Enviar Solicitud</button></div>
+</div></div></div></div></div></div>
+
+<!-- SC2: APROBACION AREA -->
+<div class="sp2" id="sc2">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/area/solicitudes/18</div><div class="musr">&#128100; Maria Lopez (Jefe de Area)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Jefe de Area</div></div>
+<div class="asn">Gestion</div><div class="asi on">&#9989; Solicitudes a Aprobar</div><div class="asi">&#128202; Historial</div></div>
+<div class="ab"><div class="atb"><div class="att">SOL-2024-018 - Aprobacion de Area</div><div class="ata"><button class="btn br2 bsm">&#10005; Rechazar</button><button class="btn bv2 bsm">&#10003; Aprobar</button></div></div>
+<div class="ac">
+<div class="fs"><h3>&#128203; Informacion de la Solicitud</h3>
+<div class="fg">
+<div class="fgr"><label>Departamento</label><input type="text" value="Dpto. Informatica" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Centro de Costo</label><input type="text" value="CC-012" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Jefe Solicitante</label><input type="text" value="Pedro Rojas" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Fecha Solicitud</label><input type="text" value="22/01/2025" readonly style="background:#f5f7fa"/></div>
+<div class="fgr" style="grid-column:1/-1"><label>Justificacion</label><textarea rows="2" readonly style="background:#f5f7fa">Equipos con mas de 10 anos de uso, sin posibilidad de reparacion...</textarea></div>
+</div></div>
+<div class="fs"><h3>&#128202; Resumen por Tipo de Recurso</h3>
+<div class="sr" style="margin-bottom:11px">
+<div class="sc"><div class="sci">&#128187;</div><div class="scn">4</div><div class="scl">Computadoras</div></div>
+<div class="sc"><div class="sci">&#128251;</div><div class="scn">2</div><div class="scl">Monitores</div></div>
+<div class="sc"><div class="sci">&#128424;</div><div class="scn">1</div><div class="scl">Impresoras</div></div>
+<div class="sc"><div class="sci">&#128230;</div><div class="scn" style="font-size:17px">7</div><div class="scl">Total Equipos</div></div>
+</div>
+<table class="at"><thead><tr><th>No. Inventario</th><th>Tipo</th><th>Marca/Modelo</th><th>Estado</th></tr></thead>
+<tbody>
+<tr><td>INV-0012345</td><td>Computadora</td><td>Lenovo ThinkCentre M73</td><td><span class="bdg br">Roto</span></td></tr>
+<tr><td>INV-0012346</td><td>Monitor</td><td>Samsung S19E200B</td><td><span class="bdg bam">Funcionando</span></td></tr>
+<tr><td>INV-0012350</td><td>Impresora</td><td>HP LaserJet P1005</td><td><span class="bdg br">Roto</span></td></tr>
+</tbody></table></div>
+<div class="fs"><h3>&#128172; Comentario</h3>
+<div class="fgr"><textarea rows="2" placeholder="Obligatorio si rechaza..."></textarea></div>
+<div style="display:flex;gap:8px;margin-top:9px;justify-content:flex-end">
+<button class="btn br2">&#10005; Rechazar Solicitud</button>
+<button class="btn bv2">&#10003; Aprobar Solicitud</button>
+</div></div></div></div></div></div></div>
+
+<!-- SC3: REVISION TECNICA -->
+<div class="sp2" id="sc3">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/soporte/revision/18</div><div class="musr">&#128100; Juan Garcia (Tecnico Soporte)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Tecnico de Soporte</div></div>
+<div class="asn">Revision</div><div class="asi on">&#128295; Revision Tecnica</div><div class="asi">&#128197; Agenda</div></div>
+<div class="ab"><div class="atb"><div class="att">Revision Tecnica - SOL-2024-018</div><div class="ata"><button class="btn bp bsm">&#128197; Agendar</button></div></div>
+<div class="ac">
+<div class="fs"><h3>&#128197; Datos de la Revision</h3>
+<div class="fg">
+<div class="fgr"><label>Fecha</label><input type="date" value="2025-01-28"/></div>
+<div class="fgr"><label>Hora</label><input type="time" value="10:00"/></div>
+<div class="fgr"><label>Tecnico</label><input type="text" value="Juan Garcia" readonly style="background:#f5f7fa"/></div>
+</div></div>
+<div class="fs"><h3>&#9989; Checklist de Revision Tecnica</h3>
+<p style="font-size:11px;color:var(--g3);margin-bottom:9px">Para cada equipo: Si procede a baja o No, con comentario opcional.</p>
+<div class="cli"><input type="checkbox" checked/><div class="cii"><div class="cin">INV-0012345 - Computadora Lenovo ThinkCentre M73</div><div class="cis">Estado reportado: Roto</div></div><select style="font-size:10px;padding:3px 7px;border:1px solid var(--gb);border-radius:4px"><option>Si - Procede baja</option><option>No - No procede</option></select><input type="text" placeholder="Comentario..." style="border:1px solid var(--gb);border-radius:4px;padding:3px 7px;font-size:10px;width:130px"/></div>
+<div class="cli"><input type="checkbox"/><div class="cii"><div class="cin">INV-0012346 - Monitor Samsung S19E200B</div><div class="cis">Estado reportado: Funcionando</div></div><select style="font-size:10px;padding:3px 7px;border:1px solid var(--gb);border-radius:4px"><option>Si - Procede baja</option><option selected>No - No procede</option></select><input type="text" placeholder="Comentario..." style="border:1px solid var(--gb);border-radius:4px;padding:3px 7px;font-size:10px;width:130px" value="En buen estado"/></div>
+<div class="cli"><input type="checkbox" checked/><div class="cii"><div class="cin">INV-0012350 - Impresora HP LaserJet P1005</div><div class="cis">Estado reportado: Roto</div></div><select style="font-size:10px;padding:3px 7px;border:1px solid var(--gb);border-radius:4px"><option>Si - Procede baja</option><option>No - No procede</option></select><input type="text" placeholder="Comentario..." style="border:1px solid var(--gb);border-radius:4px;padding:3px 7px;font-size:10px;width:130px"/></div>
+<div style="margin-top:11px;display:flex;gap:8px;justify-content:flex-end">
+<button class="btn bp">&#128190; Guardar Revision</button>
+<button class="btn bv2">&#128228; Enviar a Jefe Soporte</button>
+</div></div></div></div></div></div></div>
+
+<!-- SC4: ECONOMIA -->
+<div class="sp2" id="sc4">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/economia/solicitudes/18</div><div class="musr">&#128100; Roberto Diaz (Jefe de Economia - Sede Central)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Jefe de Economia</div></div>
+<div class="asn">Economia</div><div class="asi on">&#128176; Movimientos Pend.</div><div class="asi">&#128203; Historial</div></div>
+<div class="ab"><div class="atb"><div class="att">Movimiento Contable - SOL-2024-018</div><div class="ata"><button class="btn bv2 bsm">&#10003; Aprobar Movimiento</button></div></div>
+<div class="ac">
+<div class="ali ali-w">&#9888; Esta solicitud requiere procesamiento en el sistema contable antes de aprobar el traslado al Deposito.</div>
+<div class="fs"><h3>&#128203; Datos del Movimiento</h3>
+<div class="fg">
+<div class="fgr"><label>Departamento Origen</label><input type="text" value="Dpto. Informatica" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Centro de Costo</label><input type="text" value="CC-012" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Destino</label><input type="text" value="Deposito Central" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Sede</label><input type="text" value="Sede Central" readonly style="background:#f5f7fa"/></div>
+</div></div>
+<div class="fs"><h3>&#128187; Equipos a Trasladar (aprobados por Soporte)</h3>
+<table class="at"><thead><tr><th>No. Inventario</th><th>Tipo</th><th>Descripcion</th><th>Marca/Modelo</th><th>No. Serie</th></tr></thead>
+<tbody>
+<tr><td>INV-0012345</td><td>Computadora</td><td>PC de escritorio</td><td>Lenovo ThinkCentre M73</td><td>SN2019-123</td></tr>
+<tr><td>INV-0012350</td><td>Impresora</td><td>Impresora laser</td><td>HP LaserJet P1005</td><td>SN2015-789</td></tr>
+</tbody></table>
+<div style="margin-top:9px;display:flex;gap:8px;justify-content:flex-end">
+<button class="btn bv2">&#10003; Confirmar Movimiento Contable y Aprobar Traslado</button>
+</div></div></div></div></div></div></div>
+
+<!-- SC5: INVENTARIO DEPOSITO -->
+<div class="sp2" id="sc5">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/deposito/inventario</div><div class="musr">&#128100; Juan Garcia (Tecnico Soporte - Deposito)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Tecnico de Soporte</div></div>
+<div class="asn">Deposito</div><div class="asi">&#128202; Dashboard</div><div class="asi on">&#127981; Inventario Deposito</div><div class="asi">&#128296; Despiece</div><div class="asi">&#128190; Almacen Piezas</div></div>
+<div class="ab"><div class="atb"><div class="att">Inventario del Deposito</div><div class="ata"><button class="btn bo bsm">&#128229; Excel</button><button class="btn bo bsm">&#128196; PDF</button></div></div>
+<div class="ac">
+<div class="fs" style="padding:11px 13px">
+<div class="fg" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">
+<div class="fgr"><label>Area</label><select><option>Todas</option><option>Area Academica</option><option>Area Administrativa</option></select></div>
+<div class="fgr"><label>Departamento</label><select><option>Todos</option><option>Dpto. Informatica</option></select></div>
+<div class="fgr"><label>Tipo Recurso</label><select><option>Todos</option><option>Computadora</option><option>Monitor</option></select></div>
+<div class="fgr"><label>Estado</label><select><option>Todos</option><option>Disponible</option><option>En Despiece</option><option>Trasladado</option></select></div>
+<div class="fgr"><label>Buscar</label><input type="text" placeholder="Inv, marca, serie..."/></div>
+<div class="fgr" style="justify-content:flex-end;padding-top:15px"><button class="btn bp">&#128269; Filtrar</button></div>
+</div></div>
+<div class="tc"><div class="tch"><span class="tct">42 equipos en Deposito</span></div>
+<table class="at"><thead><tr><th>No. Inventario</th><th>Tipo</th><th>Marca/Modelo</th><th>Origen</th><th>Entregado por</th><th>Recibido por</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead>
+<tbody>
+<tr><td>INV-0012345</td><td>Computadora</td><td>Lenovo ThinkCentre M73</td><td>Dpto. Informatica</td><td>Pedro Rojas</td><td>Juan Garcia</td><td>25/01/2025</td><td><span class="bdg bv">Disponible</span></td><td><button class="btn bo bsm">&#128269;</button> <button class="btn bam2 bsm">&#128297;</button></td></tr>
+<tr><td>INV-0012350</td><td>Impresora</td><td>HP LaserJet P1005</td><td>Dpto. Informatica</td><td>Pedro Rojas</td><td>Juan Garcia</td><td>25/01/2025</td><td><span class="bdg ba">En Despiece</span></td><td><button class="btn bo bsm">&#128269;</button></td></tr>
+<tr><td>INV-0011200</td><td>Monitor</td><td>LG 19MB35P</td><td>Dir. Rectoria</td><td>Ana Torres</td><td>Juan Garcia</td><td>15/01/2025</td><td><span class="bdg bg">Trasladado</span></td><td><button class="btn bo bsm">&#128269;</button></td></tr>
+</tbody></table></div></div></div></div></div></div>
+
+<!-- SC6: DESPIECE -->
+<div class="sp2" id="sc6">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/despiece/nuevo</div><div class="musr">&#128100; Juan Garcia (Tecnico Soporte)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Tecnico de Soporte</div></div>
+<div class="asn">Despiece</div><div class="asi on">&#128296; Nueva Sol. Despiece</div><div class="asi">&#128203; Mis Solicitudes</div></div>
+<div class="ab"><div class="atb"><div class="att">Solicitud de Despiece de Equipos</div><div class="ata"><button class="btn bp bsm">&#128228; Enviar a Jefe Soporte</button></div></div>
+<div class="ac">
+<div class="fs"><h3>&#128203; Datos de la Solicitud</h3>
+<div class="fg">
+<div class="fgr"><label>Tecnico</label><input type="text" value="Juan Garcia" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Fecha Sugerida</label><input type="date" value="2025-01-30"/></div>
+<div class="fgr"><label>Hora Sugerida</label><input type="time" value="09:00"/></div>
+<div class="fgr"><label>Participantes Adicionales</label><input type="text" placeholder="Ej: Carlos Perez"/></div>
+<div class="fgr" style="grid-column:1/-1"><label>Justificacion</label><textarea rows="2">Extraccion de piezas reutilizables para reparacion de equipos activos.</textarea></div>
+</div></div>
+<div class="fs"><h3>&#128187; Equipos a Despiezar</h3>
+<div style="display:flex;gap:8px;margin-bottom:9px">
+<div class="fgr" style="flex:1"><label>Buscar por No. Inventario</label><input type="text" placeholder="INV-XXXXXXX"/></div>
+<div style="padding-top:14px"><button class="btn bp bsm">&#10133; Agregar</button></div>
+</div>
+<div class="cli"><div class="cii"><div class="cin">INV-0012345 - Computadora Lenovo ThinkCentre M73</div><div class="cis">Ingresado: 25/01/2025 | Origen: Dpto. Informatica | Estado: Disponible</div></div><button class="btn br2 bsm">&#10005;</button></div>
+<div class="cli"><div class="cii"><div class="cin">INV-0012347 - Computadora Dell OptiPlex 3010</div><div class="cis">Ingresado: 20/01/2025 | Origen: Dpto. Fisica | Estado: Disponible</div></div><button class="btn br2 bsm">&#10005;</button></div>
+</div>
+<div class="fs"><h3>&#128297; Registro de Piezas (al ejecutar el despiece aprobado)</h3>
+<div class="ali ali-i" style="font-size:10px">Esta seccion se completa en la fecha agendada, una vez aprobada la solicitud.</div>
+<div style="display:flex;gap:8px;margin-bottom:9px;flex-wrap:wrap">
+<div class="fgr"><label>Equipo</label><select style="min-width:160px"><option>INV-0012345 (Lenovo)</option><option>INV-0012347 (Dell)</option></select></div>
+<div class="fgr"><label>Tipo de Pieza</label><select><option>RAM</option><option>HDD</option><option>SSD</option><option>CPU</option><option>Fuente de Poder</option></select></div>
+<div style="padding-top:14px"><button class="btn bp bsm">&#10133; Anadir Pieza</button></div>
+</div>
+<div style="background:#f9f9f9;border:1px solid var(--gb);border-radius:8px;padding:11px">
+<div style="font-size:11px;font-weight:700;margin-bottom:7px;color:var(--az)">Campos para: RAM DDR3</div>
+<div class="fg" style="grid-template-columns:repeat(auto-fit,minmax(115px,1fr))">
+<div class="fgr"><label>Marca</label><input type="text" placeholder="Kingston"/></div>
+<div class="fgr"><label>Capacidad</label><input type="text" placeholder="4GB"/></div>
+<div class="fgr"><label>Velocidad</label><input type="text" placeholder="1600MHz"/></div>
+<div class="fgr"><label>No. Serie</label><input type="text" placeholder="SN-XXX"/></div>
+<div class="fgr"><label>Estado</label><select><option>Bueno</option><option>Regular</option><option>Malo</option></select></div>
+<div class="fgr"><label>Descripcion</label><input type="text" placeholder="Observaciones..."/></div>
+</div>
+<button class="btn bv2 bsm" style="margin-top:7px">&#10003; Registrar pieza en Almacen</button>
+</div></div></div></div></div></div></div>
+
+<!-- SC7: ALMACEN PIEZAS -->
+<div class="sp2" id="sc7">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/almacen/piezas</div><div class="musr">&#128100; Juan Garcia (Tecnico Soporte)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Tecnico de Soporte</div></div>
+<div class="asn">Almacen</div><div class="asi on">&#128190; Almacen de Piezas</div><div class="asi">&#128260; Extracciones</div></div>
+<div class="ab"><div class="atb"><div class="att">Almacen de Piezas - Deposito</div><div class="ata"><button class="btn bp bsm">&#128260; Solicitar Extraccion</button><button class="btn bo bsm">&#128229; Exportar</button></div></div>
+<div class="ac">
+<div class="sr">
+<div class="sc"><div class="sci">&#128190;</div><div class="scn">38</div><div class="scl">RAM disponibles</div></div>
+<div class="sc"><div class="sci">&#128451;</div><div class="scn">22</div><div class="scl">HDD/SSD disp.</div></div>
+<div class="sc"><div class="sci">&#9889;</div><div class="scn">15</div><div class="scl">Fuentes Poder</div></div>
+<div class="sc"><div class="sci">&#128295;</div><div class="scn">52</div><div class="scl">Otras Piezas</div></div>
+</div>
+<div class="fs" style="padding:11px 13px">
+<div class="fg" style="grid-template-columns:repeat(auto-fit,minmax(115px,1fr))">
+<div class="fgr"><label>Tipo de Pieza</label><select><option>Todos</option><option>RAM</option><option>HDD</option><option>SSD</option><option>CPU</option></select></div>
+<div class="fgr"><label>Marca</label><input type="text" placeholder="Kingston, WD..."/></div>
+<div class="fgr"><label>Capacidad</label><input type="text" placeholder="4GB, 500GB..."/></div>
+<div class="fgr"><label>Estado</label><select><option>Todos</option><option>Bueno</option><option>Regular</option></select></div>
+<div class="fgr" style="justify-content:flex-end;padding-top:14px"><button class="btn bp">&#128269; Buscar</button></div>
+</div></div>
+<div class="pc"><div class="pci">&#128190;</div><div class="pcd"><div class="pcn">RAM DDR3 - Kingston <span class="bdg bv">Disponible</span></div><div class="pcs">Capacidad: 4GB - Velocidad: 1600MHz - Serie: SN-2019-KNG-001 - Estado: Bueno</div><div class="pcs" style="margin-top:2px">Origen: INV-0012345 (Lenovo ThinkCentre) - Dpto. Informatica - 25/01/2025</div></div><div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><div class="pcst">Stock: 3</div><button class="btn bp bsm">&#128260; Extraer</button><button class="btn bo bsm">&#128269; Historial</button></div></div>
+<div class="pc"><div class="pci">&#128451;</div><div class="pcd"><div class="pcn">HDD SATA - Western Digital <span class="bdg bv">Disponible</span></div><div class="pcs">Capacidad: 500GB - RPM: 7200 - Serie: WD-SN-2018-456 - Estado: Bueno</div><div class="pcs" style="margin-top:2px">Origen: INV-0012347 (Dell OptiPlex) - Dpto. Fisica - 28/01/2025</div></div><div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><div class="pcst">Stock: 1</div><button class="btn bp bsm">&#128260; Extraer</button><button class="btn bo bsm">&#128269; Historial</button></div></div>
+<div class="pc"><div class="pci">&#9889;</div><div class="pcd"><div class="pcn">Fuente de Poder - Delta Electronics <span class="bdg bam">Reservada</span></div><div class="pcs">Potencia: 400W - Conector: ATX - Serie: DLT-2017-789 - Estado: Regular</div><div class="pcs" style="margin-top:2px">Origen: INV-0011980 (HP Compaq) - Dir. Rectoria - 10/01/2025</div></div><div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><div class="pcst" style="color:var(--am)">Stock: 0</div><button class="btn bo bsm" disabled>Reservada</button><button class="btn bo bsm">&#128269; Historial</button></div></div>
+</div></div></div></div></div>
+
+<!-- SC8: EXTRACCION PIEZA -->
+<div class="sp2" id="sc8">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/almacen/extraccion/nueva</div><div class="musr">&#128100; Juan Garcia (Tecnico Soporte)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Tecnico de Soporte</div></div>
+<div class="asn">Almacen</div><div class="asi">&#128190; Almacen Piezas</div><div class="asi on">&#128260; Nueva Extraccion</div></div>
+<div class="ab"><div class="atb"><div class="att">Solicitud de Extraccion de Pieza</div><div class="ata"><button class="btn bp bsm">&#128228; Enviar a Jefe Soporte</button></div></div>
+<div class="ac">
+<div class="fs"><h3>&#128269; Pieza a Extraer</h3>
+<div class="fg">
+<div class="fgr"><label>Tipo de Pieza</label><select><option>RAM</option><option>HDD</option><option>SSD</option><option>CPU</option></select></div>
+<div class="fgr"><label>Marca (opcional)</label><input type="text" placeholder="Kingston"/></div>
+<div class="fgr"><label>Capacidad (opcional)</label><input type="text" placeholder="4GB"/></div>
+<div class="fgr"><label>Modelo (opcional)</label><input type="text" placeholder="KVR16N11/4"/></div>
+</div>
+<div class="ali ali-i" style="margin-top:8px;font-size:10px">&#128161; El sistema mostrara las piezas disponibles que coincidan. El Jefe de Soporte Tecnico aprobara la solicitud.</div>
+</div>
+<div class="fs"><h3>&#128230; Destino de la Pieza</h3>
+<div class="fg">
+<div class="fgr"><label>Tipo de Destino</label><select><option>Equipo de otro Departamento</option><option>Equipo del propio Deposito</option></select></div>
+<div class="fgr"><label>No. Inventario Equipo Destino</label><input type="text" placeholder="INV-XXXXXXX (se actualiza al instalar)"/></div>
+<div class="fgr"><label>Departamento Destino</label><input type="text" placeholder="Buscar departamento..."/></div>
+</div>
+<div class="fgr" style="margin-top:8px"><label>Justificacion</label><textarea rows="2" placeholder="Motivo de la extraccion..."></textarea></div>
+</div>
+<div class="fs"><h3>&#128202; Historial de esta Solicitud</h3>
+<div class="tl">
+<div class="tli"><div class="tld tv">&#10003;</div><div class="tln"><div class="tlt">Solicitud creada</div><div class="tls">Juan Garcia - 22/01/2025 10:15</div></div></div>
+<div class="tli"><div class="tld ta">&#9203;</div><div class="tln"><div class="tlt">Pendiente de aprobacion - Jefe de Soporte</div><div class="tls">En espera...</div></div></div>
+<div class="tli"><div class="tld tp">&#9675;</div><div class="tln"><div class="tlt">Pieza extraida del Almacen</div><div class="tls">Pendiente</div></div></div>
+<div class="tli"><div class="tld tp">&#9675;</div><div class="tln"><div class="tlt">Instalada en equipo destino</div><div class="tls">Pendiente - registrar No. Inventario destino</div></div></div>
+</div></div></div></div></div></div></div>
+
+<!-- SC9: TRAZABILIDAD -->
+<div class="sp2" id="sc9">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/trazabilidad</div><div class="musr">&#128100; Juan Garcia (Tecnico Soporte)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Tecnico de Soporte</div></div>
+<div class="asn">Reportes</div><div class="asi on">&#128269; Trazabilidad</div><div class="asi">&#128200; Reportes</div></div>
+<div class="ab"><div class="atb"><div class="att">Trazabilidad de Equipos y Piezas</div><div class="ata"><button class="btn bo bsm">&#128196; Exportar</button></div></div>
+<div class="ac">
+<div class="fs"><h3>&#128269; Buscar Equipo por No. Inventario</h3>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<div class="fgr" style="flex:1"><label>No. Inventario</label><input type="text" value="INV-0012345"/></div>
+<div style="padding-top:14px"><button class="btn bp">&#128269; Buscar</button></div>
+</div></div>
+<div class="fs"><h3>&#128187; Equipo: INV-0012345 - Lenovo ThinkCentre M73</h3>
+<div class="fg" style="margin-bottom:11px">
+<div class="fgr"><label>Tipo</label><input type="text" value="Computadora" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Marca/Modelo</label><input type="text" value="Lenovo ThinkCentre M73" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>No. Serie</label><input type="text" value="SN2019-123" readonly style="background:#f5f7fa"/></div>
+<div class="fgr"><label>Estado Actual</label><input type="text" value="Deposito (Despiece realizado)" readonly style="background:#f5f7fa"/></div>
+</div>
+<div class="tl">
+<div class="tli"><div class="tld tv">&#10003;</div><div class="tln"><div class="tlt">Solicitud de baja - Dpto. Informatica (SOL-2024-018)</div><div class="tls">Pedro Rojas - 22/01/2025</div></div></div>
+<div class="tli"><div class="tld tv">&#10003;</div><div class="tln"><div class="tlt">Aprobado por Jefe de Area</div><div class="tls">Maria Lopez - 23/01/2025</div></div></div>
+<div class="tli"><div class="tld tv">&#10003;</div><div class="tln"><div class="tlt">Revision tecnica: Procede a baja</div><div class="tls">Juan Garcia / aprobado Jefe Soporte Carlos Romero - 25/01/2025</div></div></div>
+<div class="tli"><div class="tld tv">&#10003;</div><div class="tln"><div class="tlt">Movimiento contable aprobado por Economia</div><div class="tls">Roberto Diaz - 26/01/2025</div></div></div>
+<div class="tli"><div class="tld tv">&#10003;</div><div class="tln"><div class="tlt">Entregado al Deposito | Recibe: Juan Garcia</div><div class="tls">Entregado por: Pedro Rojas - 28/01/2025</div></div></div>
+<div class="tli"><div class="tld tv">&#10003;</div><div class="tln"><div class="tlt">Despiece realizado - 3 piezas extraidas</div><div class="tls">Juan Garcia - 30/01/2025 09:00</div></div></div>
+<div class="tli"><div class="tld tp">&#9675;</div><div class="tln"><div class="tlt">Estado actual: En Deposito (post-despiece)</div><div class="tls">Piezas en Almacen: RAM Kingston 4GB, HDD WD 500GB, Fuente Delta 400W</div></div></div>
+</div>
+<div style="height:1px;background:var(--gb);margin:12px 0"></div>
+<h4 style="font-size:11.5px;font-weight:700;color:var(--az);margin-bottom:8px">&#128297; Piezas Extraidas de este Equipo</h4>
+<table class="at"><thead><tr><th>Tipo</th><th>Marca/Modelo</th><th>Capacidad</th><th>Serie</th><th>Estado</th><th>Instalada en</th></tr></thead>
+<tbody>
+<tr><td>RAM</td><td>Kingston KVR16N11/4</td><td>4GB DDR3</td><td>SN-KNG-001</td><td><span class="bdg bv">Disponible</span></td><td>-</td></tr>
+<tr><td>HDD</td><td>WD Blue WD5000AAKX</td><td>500GB</td><td>WD-SN-456</td><td><span class="bdg bv">Disponible</span></td><td>-</td></tr>
+<tr><td>Fuente</td><td>Delta DPS-400RB</td><td>400W</td><td>DLT-789</td><td><span class="bdg ba">Instalada</span></td><td>INV-0011500 (Dpto. Quimica)</td></tr>
+</tbody></table>
+</div></div></div></div></div></div>
+
+<!-- SC10: ADMINISTRACION -->
+<div class="sp2" id="sc10">
+<div class="ms"><div class="mtb"><div class="dots"><span></span><span></span><span></span></div><div class="murl">depocom.uho.edu.cu/admin/nomencladores</div><div class="musr">&#128100; Admin UHO (Administrador)</div></div>
+<div class="af"><div class="asb"><div class="al"><div class="an">DepoCom UHO</div><div class="ar">Administrador</div></div>
+<div class="asn">CRUD Nomencladores</div>
+<div class="asi on">&#127963; Areas</div><div class="asi">&#127970; Departamentos</div><div class="asi">&#128187; Tipos Recursos</div><div class="asi">&#128297; Tipos Piezas</div>
+<div class="asn">Sistema</div>
+<div class="asi">&#128101; Usuarios y Roles</div><div class="asi">&#127963; Sedes</div><div class="asi">&#128203; Logs Auditoria</div></div>
+<div class="ab"><div class="atb"><div class="att">Nomencladores - Areas</div><div class="ata"><button class="btn bp bsm">&#10133; Nueva Area</button></div></div>
+<div class="ac">
+<div class="ali ali-i">Todos los nomencladores son administrables (CRUD). Los cambios se reflejan en todo el sistema inmediatamente.</div>
+<div class="tc"><div class="tch"><span class="tct">Areas Registradas (8)</span><input type="text" placeholder="&#128269; Buscar area..." style="border:1px solid var(--gb);border-radius:5px;padding:3px 8px;font-size:10.5px"/></div>
+<table class="at"><thead><tr><th>Nombre del Area</th><th>Sede</th><th>Jefe de Area</th><th>Departamentos</th><th>Acciones</th></tr></thead>
+<tbody>
+<tr><td><b>Area Academica</b></td><td>Sede Central</td><td>Maria Lopez</td><td><span class="bdg ba">12</span></td><td><button class="btn bo bsm">&#9998; Editar</button> <button class="btn br2 bsm">&#128465;</button></td></tr>
+<tr><td><b>Area Administrativa</b></td><td>Sede Central</td><td>Roberto Diaz</td><td><span class="bdg ba">8</span></td><td><button class="btn bo bsm">&#9998; Editar</button> <button class="btn br2 bsm">&#128465;</button></td></tr>
+<tr><td><b>Area de Investigacion</b></td><td>Sede Central</td><td>Ana Torres</td><td><span class="bdg ba">5</span></td><td><button class="btn bo bsm">&#9998; Editar</button> <button class="btn br2 bsm">&#128465;</button></td></tr>
+<tr><td><b>Area Informatica</b></td><td>Sede Mella</td><td>Luis Martinez</td><td><span class="bdg ba">3</span></td><td><button class="btn bo bsm">&#9998; Editar</button> <button class="btn br2 bsm">&#128465;</button></td></tr>
+</tbody></table></div>
+<div style="margin-top:13px">
+<div class="mvo"><div class="mvb">
+<h3>&#10133; Nueva Area / Editar Area</h3>
+<div class="fg">
+<div class="fgr"><label>Nombre del Area</label><input type="text" placeholder="Ej: Area Academica"/></div>
+<div class="fgr"><label>Sede</label><select><option>Sede Central</option><option>Sede Mella</option><option>Sede Gibara</option></select></div>
+<div class="fgr"><label>Jefe de Area</label><select><option>Seleccionar usuario...</option><option>Maria Lopez</option><option>Ana Torres</option></select></div>
+<div class="fgr" style="grid-column:1/-1"><label>Descripcion</label><textarea rows="2" placeholder="Descripcion del area..."></textarea></div>
+</div>
+<div class="mva">
+<button class="btn bo">Cancelar</button>
+<button class="btn bp">&#128190; Guardar</button>
+</div></div></div></div>
+</div></div></div></div></div>
+</section>
+</div>
+<script>
+function showScr(id,el){
+  document.querySelectorAll('.sp2').forEach(function(s){s.classList.remove('on');});
+  document.querySelectorAll('.stb').forEach(function(t){t.classList.remove('on');});
+  var p=document.getElementById(id);
+  if(p)p.classList.add('on');
+  if(el)el.classList.add('on');
+}
+</script>
+</body>
+</html>

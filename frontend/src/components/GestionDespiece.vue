@@ -1,0 +1,51 @@
+<script setup>
+import {ref,computed,onMounted} from 'vue'
+const props=defineProps({sesion:{type:Object,default:()=>({})}})
+const roles=computed(()=>props.sesion?.roles||[])
+const admin=computed(()=>props.sesion?.permisos?.administrar||roles.value.includes('Administrador del Sistema'))
+const tecnico=computed(()=>admin.value||roles.value.includes('Técnico de Soporte'))
+const jefe=computed(()=>admin.value||roles.value.includes('Jefe de Soporte Técnico'))
+const equipos=ref([]), solicitudes=ref([]), tipos=ref([]), piezas=ref([])
+const error=ref(''), aviso=ref(''), cargando=ref(false), enviando=ref(false), filtro=ref('')
+const solicitud=ref({equipo_deposito_id:'',fecha_sugerida:'',participantes:'',justificacion:''})
+const decision=ref({id:null,aprobar:true,fecha_confirmada:'',comentario:''})
+const ejecucion=ref({id:null,piezas:[]})
+const tipoNuevo=ref('')
+const lista=computed(()=>solicitudes.value.filter(x=>JSON.stringify(x).toLowerCase().includes(filtro.value.toLowerCase())))
+const disponibles=computed(()=>equipos.value.filter(x=>!x.fecha_salida&&!solicitudes.value.some(d=>d.equipo_deposito_id===x.id&&['pendiente','aprobada','realizada'].includes(d.estado))))
+const etiquetaEquipo=id=>{const e=equipos.value.find(x=>x.id===id);return e?`${e.no_inventario} — ${e.marca||''} ${e.modelo||''}`:`Equipo de depósito #${id}`}
+const isoLocal=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}T${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
+const fechaISO=x=>x?new Date(x).toISOString():null
+function cookie(){return decodeURIComponent(document.cookie.split('; ').find(x=>x.startsWith('csrftoken='))?.split('=')[1]||'')}
+async function api(url,method='GET',payload=null){if(method!=='GET')await fetch('/api/csrf/',{credentials:'include'});const r=await fetch(url,{method,credentials:'include',headers:method==='GET'?{}:{'Content-Type':'application/json','X-CSRFToken':cookie()},...(payload===null?{}:{body:JSON.stringify(payload)})});const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.detail||d.error||Object.entries(d).map(([k,v])=>`${k}: ${Array.isArray(v)?v.join(', '):v}`).join('; ')||`HTTP ${r.status}`);return d}
+async function cargar(){cargando.value=true;error.value='';try{const [a,b,c,d]=await Promise.all([api('/api/deposito/equipos/'),api('/api/despieces/'),api('/api/tipos-piezas/'),api('/api/almacen/piezas/')]);equipos.value=Array.isArray(a)?a:[];solicitudes.value=Array.isArray(b)?b:[];tipos.value=Array.isArray(c)?c:[];piezas.value=Array.isArray(d)?d:[]}catch(e){error.value=e.message}finally{cargando.value=false}}
+async function ejecutarAccion(fn){if(enviando.value)return;enviando.value=true;error.value='';aviso.value='';try{await fn();await cargar();aviso.value='Operación registrada correctamente.'}catch(e){error.value=e.message}finally{enviando.value=false}}
+function solicitar(){if(!tecnico.value)return;ejecutarAccion(async()=>{await api('/api/despieces/','POST',{...solicitud.value,equipo_deposito_id:Number(solicitud.value.equipo_deposito_id),fecha_sugerida:fechaISO(solicitud.value.fecha_sugerida)});solicitud.value={equipo_deposito_id:'',fecha_sugerida:'',participantes:'',justificacion:''}})}
+function abrirDecision(d,aprobar){decision.value={id:d.id,aprobar,fecha_confirmada:isoLocal(),comentario:''}}
+function decidir(){ejecutarAccion(async()=>{const x=decision.value;await api(`/api/despieces/${x.id}/decision/`,'POST',{aprobar:x.aprobar,comentario:x.comentario,...(x.aprobar?{fecha_confirmada:fechaISO(x.fecha_confirmada)}:{})});decision.value.id=null})}
+function piezaVacia(){return {tipo_id:'',codigo:'',marca:'',modelo:'',capacidad:'',numero_serie:'',descripcion:'',utilizable:true}}
+function abrirEjecucion(d){ejecucion.value={id:d.id,piezas:[piezaVacia()]}}
+function ejecutar(){ejecutarAccion(async()=>{const x=ejecucion.value;await api(`/api/despieces/${x.id}/ejecutar/`,'POST',{piezas:x.piezas.map(p=>({...p,tipo_id:Number(p.tipo_id)}))});ejecucion.value={id:null,piezas:[]}})}
+function crearTipo(){if(!admin.value)return;ejecutarAccion(async()=>{await api('/api/tipos-piezas/','POST',{nombre:tipoNuevo.value,campos_adicionales:[]});tipoNuevo.value=''})}
+onMounted(cargar)
+</script>
+<template>
+<section class="panel despiece">
+ <div class="panel-title"><h3>Despiece de equipos</h3><span>{{solicitudes.length}} SOLICITUDES</span></div>
+ <p>El técnico solicita el despiece; el jefe de soporte lo aprueba; después se registran las piezas recuperadas. Cada pieza conserva su procedencia.</p>
+ <div class="toolbar"><input v-model="filtro" placeholder="Buscar solicitudes…" aria-label="Buscar solicitudes"/><button class="secondary" @click="cargar" :disabled="cargando">Actualizar</button></div>
+ <p v-if="error" class="form-error" role="alert">{{error}}</p><p v-if="aviso" class="ok" role="status">{{aviso}}</p>
+ <p v-if="cargando">Cargando…</p>
+ <div v-else class="table-scroll"><table><thead><tr><th>ID</th><th>Equipo</th><th>Estado</th><th>Fecha propuesta</th><th>Acciones</th></tr></thead><tbody>
+ <tr v-for="d in lista" :key="d.id"><td>#{{d.id}}</td><td>{{etiquetaEquipo(d.equipo_deposito_id)}}</td><td>{{d.estado}}</td><td>{{d.fecha_sugerida?new Date(d.fecha_sugerida).toLocaleString(): '—'}}</td><td><button v-if="d.estado==='pendiente'&&jefe" class="secondary" @click="abrirDecision(d,true)">Aprobar</button> <button v-if="d.estado==='pendiente'&&jefe" class="secondary" @click="abrirDecision(d,false)">Rechazar</button> <button v-if="d.estado==='aprobada'&&tecnico" class="secondary" @click="abrirEjecucion(d)">Registrar piezas</button> <span v-if="d.estado==='realizada'">{{d.piezas?.length||0}} piezas</span></td></tr>
+ <tr v-if="!lista.length"><td colspan="5">No hay solicitudes registradas.</td></tr></tbody></table></div>
+ <form v-if="tecnico" class="formbox" @submit.prevent="solicitar"><h3>Solicitar despiece</h3><label>Equipo recibido en depósito<select v-model="solicitud.equipo_deposito_id" required><option value="" disabled>Seleccionar equipo</option><option v-for="e in disponibles" :key="e.id" :value="e.id">{{etiquetaEquipo(e.id)}}</option></select></label><label>Fecha y hora sugeridas<input v-model="solicitud.fecha_sugerida" type="datetime-local" required/></label><label>Participantes<input v-model="solicitud.participantes" maxlength="1000" placeholder="Nombres de participantes"/></label><label>Justificación<textarea v-model="solicitud.justificacion" required maxlength="2000" rows="3"/></label><button class="primary" :disabled="enviando||!disponibles.length">Enviar solicitud</button></form>
+ <form v-if="decision.id!==null" class="formbox" @submit.prevent="decidir"><h3>{{decision.aprobar?'Aprobar':'Rechazar'}} despiece #{{decision.id}}</h3><label v-if="decision.aprobar">Fecha confirmada<input type="datetime-local" v-model="decision.fecha_confirmada" required/></label><label>Comentario<textarea v-model="decision.comentario" :required="!decision.aprobar" maxlength="2000"/></label><div class="toolbar"><button class="primary" :disabled="enviando">Confirmar decisión</button><button type="button" class="secondary" @click="decision.id=null">Cancelar</button></div></form>
+ <form v-if="ejecucion.id!==null" class="formbox" @submit.prevent="ejecutar"><h3>Registrar piezas recuperadas — despiece #{{ejecucion.id}}</h3><p>Esta operación es definitiva: el despiece se marca como realizado y las piezas se incorporan al almacén de piezas recuperadas.</p><div v-for="(p,i) in ejecucion.piezas" :key="i" class="pieza"><strong>Pieza {{i+1}}</strong><label>Tipo de pieza<select v-model="p.tipo_id" required><option disabled value="">Selecciona un tipo</option><option v-for="t in tipos" :key="t.id" :value="t.id">{{t.nombre}}</option></select></label><label>Código único<input v-model.trim="p.codigo" maxlength="70" required/></label><label>Marca<input v-model.trim="p.marca" maxlength="150"/></label><label>Modelo<input v-model.trim="p.modelo" maxlength="150"/></label><label>Capacidad<input v-model.trim="p.capacidad" maxlength="100" placeholder="Ej. 8 GB"/></label><label>Número de serie<input v-model.trim="p.numero_serie" maxlength="150"/></label><label>Descripción<textarea v-model="p.descripcion" maxlength="2000"/></label><label class="check"><input type="checkbox" v-model="p.utilizable"/> Pieza reutilizable</label><button v-if="ejecucion.piezas.length>1" type="button" class="secondary" @click="ejecucion.piezas.splice(i,1)">Quitar pieza</button></div><div class="toolbar"><button type="button" class="secondary" @click="ejecucion.piezas.push(piezaVacia())" :disabled="ejecucion.piezas.length>=100">+ Añadir pieza</button><button class="primary" :disabled="enviando||!tipos.length">Finalizar despiece</button><button type="button" class="secondary" @click="ejecucion.id=null">Cancelar</button></div></form>
+ <form v-if="admin" class="formbox" @submit.prevent="crearTipo"><h3>Crear tipo de pieza</h3><p>Los tipos de piezas (RAM, disco duro, fuente, etc.) son distintos de los tipos de recursos (PC, impresora, monitor).</p><div class="toolbar"><input v-model.trim="tipoNuevo" maxlength="100" required placeholder="Ej. Memoria RAM"/><button class="secondary" :disabled="enviando">Crear tipo</button></div></form>
+ <div class="formbox"><h3>Piezas recuperadas</h3><p v-if="!piezas.length">Aún no hay piezas recuperadas.</p><div v-else class="table-scroll"><table><thead><tr><th>Código</th><th>Tipo</th><th>Origen</th><th>Estado</th></tr></thead><tbody><tr v-for="p in piezas" :key="p.id"><td>{{p.codigo}}</td><td>{{p.tipo}}</td><td>{{p.equipo_origen}}</td><td>{{p.estado}}</td></tr></tbody></table></div></div>
+</section>
+</template>
+<style scoped>
+.despiece .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}.toolbar input{flex:1;min-width:180px}.formbox{border-top:1px solid #cbd5e1;padding-top:16px;margin-top:22px;display:grid;gap:12px}.formbox label{display:grid;gap:5px;font-weight:600}.formbox input,.formbox select,.formbox textarea,.toolbar input{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font:inherit}.formbox .check{display:flex;align-items:center;gap:8px}.check input{width:auto}.pieza{border:1px solid #cbd5e1;border-radius:10px;padding:15px;display:grid;gap:10px}.ok{color:#166534}
+</style>

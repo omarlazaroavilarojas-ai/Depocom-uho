@@ -1,0 +1,2185 @@
+openapi: 3.0.3
+info:
+  title: DepoCom UHO API
+  version: 1.0.0
+  description: Gestión del depósito de equipos y piezas de cómputo de la UHO.
+paths:
+  /api/almacen/piezas/:
+    get:
+      operationId: piezasrecuperadasview_get
+      description: 'PiezasRecuperadasView: GET.'
+      tags:
+      - almacen
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/almacen/stock/:
+    get:
+      operationId: stockpiezasview_get
+      description: 'StockPiezasView: GET.'
+      tags:
+      - almacen
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/departamentos/:
+    get:
+      operationId: departamentos_list
+      tags:
+      - departamentos
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Departamento'
+          description: ''
+  /api/deposito/equipos/:
+    get:
+      operationId: equiposdepositoview_get
+      description: 'EquiposDepositoView: GET.'
+      tags:
+      - deposito
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/deposito/equipos/{id}/:
+    get:
+      operationId: equipodepositodetailview_get
+      description: 'EquipoDepositoDetailView: GET.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - deposito
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+    patch:
+      operationId: equipodepositodetailview_patch
+      description: 'EquipoDepositoDetailView: PATCH.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - deposito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/deposito/equipos/{id}/clasificar/:
+    post:
+      operationId: clasificarequipoview_post
+      description: 'ClasificarEquipoView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - deposito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/deposito/equipos/{id}/movimientos/:
+    get:
+      operationId: movimientoequipoview_get
+      description: 'MovimientoEquipoView: GET.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - deposito
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+    post:
+      operationId: movimientoequipoview_post
+      description: 'MovimientoEquipoView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - deposito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/deposito/resumen/:
+    get:
+      operationId: resumendepositoview_get
+      description: 'ResumenDepositoView: GET.'
+      tags:
+      - deposito
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/despieces/:
+    get:
+      operationId: despiecesview_get
+      description: 'DespiecesView: GET.'
+      tags:
+      - despieces
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+    post:
+      operationId: despiecesview_post
+      description: 'DespiecesView: POST.'
+      tags:
+      - despieces
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/despieces/{id}/decision/:
+    post:
+      operationId: decisiondespieceview_post
+      description: 'DecisionDespieceView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - despieces
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/despieces/{id}/ejecutar/:
+    post:
+      operationId: ejecutardespieceview_post
+      description: 'EjecutarDespieceView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - despieces
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/equipos/:
+    get:
+      operationId: equipos_list
+      tags:
+      - equipos
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Equipo'
+          description: ''
+    post:
+      operationId: equipos_create
+      tags:
+      - equipos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EquipoCrear'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EquipoCrear'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EquipoCrear'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquipoCrear'
+          description: ''
+  /api/equipos/{id}/:
+    get:
+      operationId: equipos_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - equipos
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Equipo'
+          description: ''
+    put:
+      operationId: equipos_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - equipos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EquipoCrear'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EquipoCrear'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EquipoCrear'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquipoCrear'
+          description: ''
+    patch:
+      operationId: equipos_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - equipos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEquipoCrear'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEquipoCrear'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEquipoCrear'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquipoCrear'
+          description: ''
+  /api/extracciones/:
+    get:
+      operationId: extraccionesview_get
+      description: 'ExtraccionesView: GET.'
+      tags:
+      - extracciones
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+    post:
+      operationId: extraccionesview_post
+      description: 'ExtraccionesView: POST.'
+      tags:
+      - extracciones
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/extracciones/{id}/decision/:
+    post:
+      operationId: decisionextraccionview_post
+      description: 'DecisionExtraccionView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - extracciones
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/extracciones/{id}/instalar/:
+    post:
+      operationId: instalarpiezaview_post
+      description: 'InstalarPiezaView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - extracciones
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/inventario/:
+    get:
+      operationId: inventario_list
+      tags:
+      - inventario
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PiezaDeposito'
+          description: ''
+    post:
+      operationId: inventario_create
+      tags:
+      - inventario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiezaDeposito'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PiezaDeposito'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PiezaDeposito'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiezaDeposito'
+          description: ''
+  /api/inventario/{id}/:
+    get:
+      operationId: inventario_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - inventario
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiezaDeposito'
+          description: ''
+    put:
+      operationId: inventario_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - inventario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiezaDeposito'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PiezaDeposito'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PiezaDeposito'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiezaDeposito'
+          description: ''
+    patch:
+      operationId: inventario_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - inventario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPiezaDeposito'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPiezaDeposito'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPiezaDeposito'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiezaDeposito'
+          description: ''
+  /api/notificaciones/:
+    get:
+      operationId: notificacionesview_get
+      description: 'NotificacionesView: GET.'
+      tags:
+      - notificaciones
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+    post:
+      operationId: notificacionesview_post
+      description: 'NotificacionesView: POST.'
+      tags:
+      - notificaciones
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/reportes/{categoria}.{formato}:
+    get:
+      operationId: reporteformatoview_get
+      description: 'ReporteFormatoView: GET.'
+      parameters:
+      - in: path
+        name: categoria
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: formato
+        schema:
+          type: string
+        required: true
+      tags:
+      - reportes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/reportes/equipos-deposito.csv:
+    get:
+      operationId: reporteequiposcsvview_get
+      description: 'ReporteEquiposCSVView: GET.'
+      tags:
+      - reportes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/reportes/movimientos-piezas.csv:
+    get:
+      operationId: reportemovimientoscsvview_get
+      description: 'ReporteMovimientosCSVView: GET.'
+      tags:
+      - reportes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/revisiones/{equipo_solicitud_id}/:
+    get:
+      operationId: revisiones_retrieve
+      parameters:
+      - in: path
+        name: equipo_solicitud_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - revisiones
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevisionTecnica'
+          description: ''
+  /api/revisiones/{equipo_solicitud_id}/guardar/:
+    put:
+      operationId: guardarrevisiontecnicaview_put
+      description: 'GuardarRevisionTecnicaView: PUT.'
+      parameters:
+      - in: path
+        name: equipo_solicitud_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - revisiones
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/sedes/:
+    get:
+      operationId: sedes_list
+      tags:
+      - sedes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sede'
+          description: ''
+  /api/solicitudes/:
+    get:
+      operationId: solicitudes_list
+      tags:
+      - solicitudes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SolicitudBaja'
+          description: ''
+    post:
+      operationId: solicitudes_create
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearSolicitudBaja'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CrearSolicitudBaja'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CrearSolicitudBaja'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrearSolicitudBaja'
+          description: ''
+  /api/solicitudes/{id}/:
+    get:
+      operationId: solicitudes_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolicitudBaja'
+          description: ''
+    put:
+      operationId: solicitudes_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditarSolicitudBaja'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EditarSolicitudBaja'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EditarSolicitudBaja'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditarSolicitudBaja'
+          description: ''
+    patch:
+      operationId: solicitudes_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEditarSolicitudBaja'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEditarSolicitudBaja'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEditarSolicitudBaja'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditarSolicitudBaja'
+          description: ''
+  /api/solicitudes/{id}/aprobar-economia/:
+    post:
+      operationId: aprobareconomiaview_post
+      description: 'AprobarEconomiaView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/solicitudes/{id}/aprobar-revision/:
+    post:
+      operationId: aprobarrevisiontecnicaview_post
+      description: 'AprobarRevisionTecnicaView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/solicitudes/{id}/decision-area/:
+    post:
+      operationId: decisionareaview_post
+      description: 'DecisionAreaView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/solicitudes/{id}/iniciar-economia/:
+    post:
+      operationId: iniciarprocesoeconomicoview_post
+      description: 'IniciarProcesoEconomicoView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/solicitudes/{id}/iniciar-revision/:
+    post:
+      operationId: iniciarrevisiontecnicaview_post
+      description: 'IniciarRevisionTecnicaView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/solicitudes/{id}/presentar/:
+    post:
+      operationId: presentarsolicitudview_post
+      description: 'PresentarSolicitudView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/solicitudes/{id}/recepcion/:
+    get:
+      operationId: recepcionsolicitudview_get
+      description: 'RecepcionSolicitudView: GET.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+    post:
+      operationId: recepcionsolicitudview_post
+      description: 'RecepcionSolicitudView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/solicitudes/{id}/remitir-economia/:
+    post:
+      operationId: remitireconomiaview_post
+      description: 'RemitirEconomiaView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/solicitudes/{solicitud_id}/historial/:
+    get:
+      operationId: solicitudes_historial_list
+      parameters:
+      - in: path
+        name: solicitud_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - solicitudes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistorialSolicitud'
+          description: ''
+  /api/tipos-piezas/:
+    get:
+      operationId: tipospiezaview_get
+      description: 'TiposPiezaView: GET.'
+      tags:
+      - tipos-piezas
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+    post:
+      operationId: tipospiezaview_post
+      description: 'TiposPiezaView: POST.'
+      tags:
+      - tipos-piezas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/tipos-recursos/:
+    get:
+      operationId: tipos_recursos_list
+      tags:
+      - tipos-recursos
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TipoRecurso'
+          description: ''
+  /api/traslados/:
+    get:
+      operationId: trasladosview_get
+      description: 'TrasladosView: GET.'
+      tags:
+      - traslados
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+    post:
+      operationId: trasladosview_post
+      description: 'TrasladosView: POST.'
+      tags:
+      - traslados
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/traslados/{id}/decision/:
+    post:
+      operationId: decisiontrasladoview_post
+      description: 'DecisionTrasladoView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - traslados
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/traslados/{id}/ejecutar/:
+    post:
+      operationId: ejecutartrasladoview_post
+      description: 'EjecutarTrasladoView: POST.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - traslados
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+components:
+  schemas:
+    AccionEnum:
+      enum:
+      - creacion
+      - edicion
+      - revision
+      - presentacion
+      - aprobacion_area
+      - rechazo_area
+      - aprobacion_tecnica
+      - remision_economia
+      - inicio_economia
+      - aprobacion_economia
+      - recepcion_deposito
+      type: string
+      description: |-
+        * `creacion` - Creación
+        * `edicion` - Edición
+        * `revision` - Revisión técnica
+        * `presentacion` - Presentación
+        * `aprobacion_area` - Aprobación del Área
+        * `rechazo_area` - Rechazo del Área
+        * `aprobacion_tecnica` - Aprobación técnica
+        * `remision_economia` - Remisión a Economía
+        * `inicio_economia` - Inicio del proceso económico
+        * `aprobacion_economia` - Aprobación económica
+        * `recepcion_deposito` - Recepción en depósito
+    CondicionFisicaEnum:
+      enum:
+      - buena
+      - regular
+      - mala
+      - no_evaluada
+      type: string
+      description: |-
+        * `buena` - Buena
+        * `regular` - Regular
+        * `mala` - Mala
+        * `no_evaluada` - No evaluada
+    CrearSolicitudBaja:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        numero:
+          type: string
+          title: Número de solicitud
+          maxLength: 50
+        observaciones:
+          type: string
+        equipos:
+          type: array
+          items:
+            type: integer
+            writeOnly: true
+          writeOnly: true
+      required:
+      - equipos
+      - id
+      - numero
+    Departamento:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          readOnly: true
+        tipo:
+          allOf:
+          - $ref: '#/components/schemas/TipoEnum'
+          readOnly: true
+        centro_costo:
+          type: string
+          readOnly: true
+          title: Centro de costo
+        area:
+          type: integer
+          readOnly: true
+        area_nombre:
+          type: string
+          readOnly: true
+        sede_nombre:
+          type: string
+          readOnly: true
+      required:
+      - area
+      - area_nombre
+      - centro_costo
+      - id
+      - nombre
+      - sede_nombre
+      - tipo
+    EditarSolicitudBaja:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        numero:
+          type: string
+          title: Número de solicitud
+          maxLength: 50
+        observaciones:
+          type: string
+        equipos:
+          type: array
+          items:
+            type: integer
+            writeOnly: true
+          writeOnly: true
+      required:
+      - id
+      - numero
+    Equipo:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        no_inventario:
+          type: string
+          readOnly: true
+          title: Número de inventario
+        tipo_recurso:
+          type: integer
+          readOnly: true
+        tipo_recurso_nombre:
+          type: string
+          readOnly: true
+        marca:
+          type: string
+          readOnly: true
+        modelo:
+          type: string
+          readOnly: true
+        no_serie:
+          type: string
+          readOnly: true
+          title: Número de serie
+        departamento:
+          type: integer
+          readOnly: true
+          nullable: true
+        departamento_nombre:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - departamento
+      - departamento_nombre
+      - id
+      - marca
+      - modelo
+      - no_inventario
+      - no_serie
+      - tipo_recurso
+      - tipo_recurso_nombre
+    EquipoCrear:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        no_inventario:
+          type: string
+          title: Número de inventario
+          maxLength: 100
+        tipo_recurso:
+          type: integer
+        marca:
+          type: string
+          maxLength: 150
+        modelo:
+          type: string
+          maxLength: 150
+        no_serie:
+          type: string
+          title: Número de serie
+          maxLength: 150
+        departamento:
+          type: integer
+          nullable: true
+      required:
+      - id
+      - no_inventario
+      - tipo_recurso
+    EquipoEnSolicitud:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        equipo:
+          type: integer
+        no_inventario:
+          type: string
+          readOnly: true
+        observaciones:
+          type: string
+        revision_tecnica:
+          allOf:
+          - $ref: '#/components/schemas/RevisionTecnica'
+          readOnly: true
+      required:
+      - equipo
+      - id
+      - no_inventario
+      - revision_tecnica
+    HistorialSolicitud:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        accion:
+          allOf:
+          - $ref: '#/components/schemas/AccionEnum'
+          readOnly: true
+          title: Acción
+        accion_nombre:
+          type: string
+          readOnly: true
+        descripcion:
+          type: string
+          readOnly: true
+          title: Descripción
+        usuario:
+          type: integer
+          readOnly: true
+        usuario_nombre:
+          type: string
+          readOnly: true
+        fecha:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - accion
+      - accion_nombre
+      - descripcion
+      - fecha
+      - id
+      - usuario
+      - usuario_nombre
+    PatchedEditarSolicitudBaja:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        numero:
+          type: string
+          title: Número de solicitud
+          maxLength: 50
+        observaciones:
+          type: string
+        equipos:
+          type: array
+          items:
+            type: integer
+            writeOnly: true
+          writeOnly: true
+    PatchedEquipoCrear:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        no_inventario:
+          type: string
+          title: Número de inventario
+          maxLength: 100
+        tipo_recurso:
+          type: integer
+        marca:
+          type: string
+          maxLength: 150
+        modelo:
+          type: string
+          maxLength: 150
+        no_serie:
+          type: string
+          title: Número de serie
+          maxLength: 150
+        departamento:
+          type: integer
+          nullable: true
+    PatchedPiezaDeposito:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        codigo:
+          type: string
+          title: Código de la pieza
+          maxLength: 50
+        nombre:
+          type: string
+          maxLength: 150
+        descripcion:
+          type: string
+          title: Descripción
+        cantidad:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        estado:
+          $ref: '#/components/schemas/PiezaDepositoEstadoEnum'
+        estado_nombre:
+          type: string
+          readOnly: true
+        ubicacion:
+          type: string
+          title: Ubicación en el depósito
+          maxLength: 150
+        fecha_creacion:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de creación
+        fecha_actualizacion:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última actualización
+    PiezaDeposito:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        codigo:
+          type: string
+          title: Código de la pieza
+          maxLength: 50
+        nombre:
+          type: string
+          maxLength: 150
+        descripcion:
+          type: string
+          title: Descripción
+        cantidad:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        estado:
+          $ref: '#/components/schemas/PiezaDepositoEstadoEnum'
+        estado_nombre:
+          type: string
+          readOnly: true
+        ubicacion:
+          type: string
+          title: Ubicación en el depósito
+          maxLength: 150
+        fecha_creacion:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de creación
+        fecha_actualizacion:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última actualización
+      required:
+      - codigo
+      - estado_nombre
+      - fecha_actualizacion
+      - fecha_creacion
+      - id
+      - nombre
+    PiezaDepositoEstadoEnum:
+      enum:
+      - disponible
+      - revision
+      - no_utilizable
+      type: string
+      description: |-
+        * `disponible` - Disponible
+        * `revision` - En revisión
+        * `no_utilizable` - No utilizable
+    RevisionTecnica:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        equipo_solicitud:
+          type: integer
+          readOnly: true
+        condicion_fisica:
+          allOf:
+          - $ref: '#/components/schemas/CondicionFisicaEnum'
+          title: Condición física
+        diagnostico:
+          type: string
+          title: Diagnóstico técnico
+        observaciones:
+          type: string
+          title: Observaciones técnicas
+        fecha_revision:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de revisión
+        revisado_por:
+          type: integer
+          readOnly: true
+        revisor_nombre:
+          type: string
+          readOnly: true
+      required:
+      - equipo_solicitud
+      - fecha_revision
+      - id
+      - revisado_por
+      - revisor_nombre
+    Sede:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          maxLength: 150
+        direccion:
+          type: string
+          title: Dirección
+          maxLength: 255
+      required:
+      - direccion
+      - id
+      - nombre
+    SolicitudBaja:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        numero:
+          type: string
+          title: Número de solicitud
+          maxLength: 50
+        fecha_creacion:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de creación
+        solicitante:
+          type: integer
+          readOnly: true
+        solicitante_nombre:
+          type: string
+          readOnly: true
+        observaciones:
+          type: string
+        estado:
+          allOf:
+          - $ref: '#/components/schemas/SolicitudBajaEstadoEnum'
+          readOnly: true
+        equipos_asociados:
+          type: array
+          items:
+            $ref: '#/components/schemas/EquipoEnSolicitud'
+          readOnly: true
+      required:
+      - equipos_asociados
+      - estado
+      - fecha_creacion
+      - id
+      - numero
+      - solicitante
+      - solicitante_nombre
+    SolicitudBajaEstadoEnum:
+      enum:
+      - borrador
+      - presentada
+      - aprobada_area
+      - rechazada_area
+      - en_revision
+      - aprobada_tecnica
+      - pendiente_economia
+      - proceso_economico
+      - aprobada_economia
+      - recibida_deposito
+      type: string
+      description: |-
+        * `borrador` - Borrador
+        * `presentada` - Presentada
+        * `aprobada_area` - Aprobada por Área
+        * `rechazada_area` - Rechazada por Área
+        * `en_revision` - En Revisión Técnica
+        * `aprobada_tecnica` - Aprobada Técnicamente
+        * `pendiente_economia` - Pendiente Movimiento Economía
+        * `proceso_economico` - En Proceso Económico
+        * `aprobada_economia` - Aprobada por Economía
+        * `recibida_deposito` - Recibida en Depósito
+    TipoEnum:
+      enum:
+      - departamento
+      - direccion
+      - grupo
+      type: string
+      description: |-
+        * `departamento` - Departamento
+        * `direccion` - Dirección
+        * `grupo` - Grupo
+    TipoRecurso:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          maxLength: 150
+      required:
+      - id
+      - nombre
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
